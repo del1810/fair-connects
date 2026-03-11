@@ -1,5 +1,43 @@
+// ===== DYNAMIC GALLERY DATA =====
+let galleryData = [];
+
+// ===== RENDER LOGIC =====
+async function renderGallery() {
+    const gridEl = document.getElementById('dynamic-gallery-grid');
+    if (!gridEl) return;
+
+    try {
+        const response = await fetch('data/gallery.json');
+        if (!response.ok) throw new Error('Failed to load gallery data');
+        galleryData = await response.json();
+        
+        gridEl.innerHTML = '';
+
+        galleryData.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'gallery-item';
+            
+            itemDiv.addEventListener('click', () => openLightbox(item.src, item.caption));
+
+            itemDiv.innerHTML = `
+                <img src="${item.src}" alt="${item.caption}" loading="lazy">
+                <div class="gallery-overlay">
+                    <i class="fas fa-expand"></i><span>${item.title}</span>
+                </div>
+            `;
+
+            gridEl.appendChild(itemDiv);
+        });
+    } catch (error) {
+        console.error("Error loading gallery:", error);
+        gridEl.innerHTML = '<p style="color: white; text-align: center; padding: 2rem;">Unable to load gallery images at this time.</p>';
+    }
+}
+
 // ===== LIGHTBOX =====
 const lbImages = [];
+
+/* STATIC LIGHTBOX LOGIC COMMENTED OUT
 function openLightbox(src, caption) {
     const lb = document.getElementById('lightbox');
     document.getElementById('lb-img').src = src;
@@ -11,6 +49,33 @@ function openLightbox(src, caption) {
     document.querySelectorAll('.gallery-item').forEach(el => {
         lbImages.push({ src: el.getAttribute('onclick').match(/'([^']+)'/)[1], cap: el.getAttribute('onclick').match(/'([^']+)'/g)[1]?.replace(/'/g, '') || '' });
     });
+}
+*/
+
+// DYNAMIC LIGHTBOX LOGIC
+function openLightbox(src, caption) {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb-caption').textContent = caption;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    
+    lbImages.length = 0;
+    const gridEl = document.getElementById('dynamic-gallery-grid');
+    if (gridEl && galleryData.length > 0) {
+        galleryData.forEach(item => {
+            lbImages.push({ src: item.src, cap: item.caption });
+        });
+    } else {
+        document.querySelectorAll('.gallery-item').forEach(el => {
+            try {
+                const onclickStr = el.getAttribute('onclick');
+                if (onclickStr) {
+                    lbImages.push({ src: onclickStr.match(/'([^']+)'/)[1], cap: onclickStr.match(/'([^']+)'/g)[1]?.replace(/'/g, '') || '' });
+                }
+            } catch (e) {}
+        });
+    }
 }
 
 function closeLightbox(e) {
@@ -89,6 +154,7 @@ function observeAnimations() {
 document.addEventListener('DOMContentLoaded', () => {
     setNavigationLink();
     observeAnimations();
+    renderGallery(); // Initialize dynamic gallery
     document.querySelectorAll('.features-grid .feature-card, .services-grid .service-card').forEach((el, i) => { el.style.transitionDelay = (i * 0.08) + 's'; });
     document.addEventListener('click', e => {
         const menu = document.getElementById('navMenu');

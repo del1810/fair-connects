@@ -1,0 +1,47 @@
+[
+    {
+        "src": "assets/gallery1.jpg",
+        "title": "Exhibition Hall",
+        "caption": "Exhibition Hall — Trade Fair Overview"
+    },
+    {
+        "src": "assets/gallery2.jpg",
+        "title": "Conference Programs",
+        "caption": "Conference & Knowledge Programs"
+    },
+    {
+        "src": "assets/gallery3.jpg",
+        "title": "Industry Summits",
+        "caption": "Industry Summit & Seminar"
+    },
+    {
+        "src": "assets/gallery4.jpg",
+        "title": "Networking Events",
+        "caption": "Networking & Buyer Meet"
+    },
+    {
+        "src": "assets/gallery5.jpg",
+        "title": "Exhibition Stalls",
+        "caption": "Exhibition Stall & Display"
+    },
+    {
+        "src": "assets/gallery6.jpg",
+        "title": "Visitor Footfall",
+        "caption": "Trade Fair Visitors & Buyers"
+    },
+    {
+        "src": "assets/gallery7.jpg",
+        "title": "Product Launches",
+        "caption": "Product Launch & Demo"
+    },
+    {
+        "src": "assets/gallery8.jpg",
+        "title": "B2B Matchmaking",
+        "caption": "B2B Matchmaking & Partnerships"
+    },
+    {
+        "src": "assets/gallery9.jpg",
+        "title": "Awards & Recognition",
+        "caption": "Awards & Recognition"
+    }
+]
