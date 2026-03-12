@@ -1,0 +1,52 @@
+[
+  {
+    "icon": "🍽️",
+    "sectorBadge": "Food & Beverage",
+    "title": "FCI Food Expo",
+    "subtitle": "India's Premier Food & Beverage Trade Exhibition",
+    "location": "Chennai, India",
+    "status": "Upcoming",
+    "description": "A comprehensive B2B trade exhibition covering Food, Beverage, Dairy, Bakery, Sea Food, Cold Storage, Packaging and all allied sectors. Meet manufacturers, suppliers, buyers and distributors under one roof.",
+    "ctaLink": "#"
+  },
+  {
+    "icon": "⚡",
+    "sectorBadge": "Power & Energy",
+    "title": "FCI Power Expo",
+    "subtitle": "Power, Energy & Solar Trade Exhibition",
+    "location": "Chennai, India",
+    "status": "Upcoming",
+    "description": "Covering Electrical, Solar, LED, Energy Storage and all allied sectors. A platform for India's energy transition — connecting manufacturers, installers, distributors and policymakers.",
+    "ctaLink": "#"
+  },
+  {
+    "icon": "🚗",
+    "sectorBadge": "Automotive",
+    "title": "FCI Auto Expo",
+    "subtitle": "Automotive & EV Components Exhibition",
+    "location": "Chennai, India",
+    "status": "Upcoming",
+    "description": "Automotive, Components, EV, Batteries, Aftermarket Solutions and allied sectors. South India's focused B2B automotive show connecting the entire vehicle ecosystem.",
+    "ctaLink": "#"
+  },
+  {
+    "icon": "🏥",
+    "sectorBadge": "Healthcare",
+    "title": "FCI Health Expo",
+    "subtitle": "Healthcare, Medical & Pharma Trade Show",
+    "location": "Chennai, India",
+    "status": "Upcoming",
+    "description": "Connecting India's healthcare ecosystem — hospitals, medical device manufacturers, pharma companies and innovators — for better healthcare outcomes and business growth.",
+    "ctaLink": "#"
+  },
+  {
+    "icon": "🏗️",
+    "sectorBadge": "Construction",
+    "title": "FCI Build Expo",
+    "subtitle": "Construction & Infrastructure Trade Exhibition",
+    "location": "Chennai, India",
+    "status": "Upcoming",
+    "description": "Construction, Infrastructure, Smart Building & Security Solutions, Building Materials, Paint and all allied sectors. The go-to platform for India's built environment industry.",
+    "ctaLink": "#"
+  }
+]

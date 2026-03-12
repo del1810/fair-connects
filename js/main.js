@@ -10,13 +10,13 @@ async function renderGallery() {
         const response = await fetch('data/gallery.json');
         if (!response.ok) throw new Error('Failed to load gallery data');
         galleryData = await response.json();
-        
+
         gridEl.innerHTML = '';
 
         galleryData.forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'gallery-item';
-            
+
             itemDiv.addEventListener('click', () => openLightbox(item.src, item.caption));
 
             itemDiv.innerHTML = `
@@ -37,21 +37,6 @@ async function renderGallery() {
 // ===== LIGHTBOX =====
 const lbImages = [];
 
-/* STATIC LIGHTBOX LOGIC COMMENTED OUT
-function openLightbox(src, caption) {
-    const lb = document.getElementById('lightbox');
-    document.getElementById('lb-img').src = src;
-    document.getElementById('lb-caption').textContent = caption;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    // Build index
-    lbImages.length = 0;
-    document.querySelectorAll('.gallery-item').forEach(el => {
-        lbImages.push({ src: el.getAttribute('onclick').match(/'([^']+)'/)[1], cap: el.getAttribute('onclick').match(/'([^']+)'/g)[1]?.replace(/'/g, '') || '' });
-    });
-}
-*/
-
 // DYNAMIC LIGHTBOX LOGIC
 function openLightbox(src, caption) {
     const lb = document.getElementById('lightbox');
@@ -59,7 +44,7 @@ function openLightbox(src, caption) {
     document.getElementById('lb-caption').textContent = caption;
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
-    
+
     lbImages.length = 0;
     const gridEl = document.getElementById('dynamic-gallery-grid');
     if (gridEl && galleryData.length > 0) {
@@ -73,7 +58,7 @@ function openLightbox(src, caption) {
                 if (onclickStr) {
                     lbImages.push({ src: onclickStr.match(/'([^']+)'/)[1], cap: onclickStr.match(/'([^']+)'/g)[1]?.replace(/'/g, '') || '' });
                 }
-            } catch (e) {}
+            } catch (e) { }
         });
     }
 }
@@ -154,14 +139,334 @@ function observeAnimations() {
 document.addEventListener('DOMContentLoaded', () => {
     setNavigationLink();
     observeAnimations();
+
     renderGallery(); // Initialize dynamic gallery
-    document.querySelectorAll('.features-grid .feature-card, .services-grid .service-card').forEach((el, i) => { el.style.transitionDelay = (i * 0.08) + 's'; });
+    renderFeatures(); // Initialize features grid if available
+    renderSectors(); // Initialize dynamic sectors
+    renderIndexSectors(); // Initialize index page sectors
+    renderServices(); // Initialize services grid for both index and services pages
+    renderExhibitions(); // Initialize dynamic exhibitions list if available
+    renderIndexFeatures(); // Initialize dynamic features list if available
+
+    document.querySelectorAll('.features-grid .feature-card').forEach((el, i) => { el.style.transitionDelay = (i * 0.08) + 's'; });
     document.addEventListener('click', e => {
         const menu = document.getElementById('navMenu');
         const hamburger = document.getElementById('hamburger');
         if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
     });
 });
+
+async function renderFeatures() {
+    const gridEl = document.getElementById('about-features-grid');
+    if (!gridEl) return;
+
+    try {
+        const response = await fetch('data/features.json');
+        if (!response.ok) throw new Error('Failed to load features data');
+        const features = await response.json();
+
+        let htmlContent = '';
+        features.forEach((feature) => {
+            // Check for missing main params as requested
+            if (!feature.title || !feature.description) {
+                console.warn('Skipping feature due to missing title or description', feature);
+                return;
+            }
+
+            const imageHTML = feature.image ? `<img src="${feature.image}" alt="${feature.title}">` : '';
+            const iconHTML = feature.icon ? `<div class="feature-illus-icon"><i class="${feature.icon}"></i></div>` : '';
+
+            // Handle optional illus wrapper if image or icon exists
+            let illusWrapper = '';
+            if (imageHTML || iconHTML) {
+                illusWrapper = `<div class="feature-illus">${imageHTML}${iconHTML}</div>`;
+            }
+
+            htmlContent += `
+                <div class="feature-card">
+                    ${illusWrapper}
+                    <h3>${feature.title}</h3>
+                    <p>${feature.description}</p>
+                </div>
+            `;
+        });
+
+        gridEl.innerHTML = htmlContent;
+
+        // Setup animations on the newly created cards
+        const newCards = gridEl.querySelectorAll('.feature-card');
+        newCards.forEach((el, i) => { el.style.transitionDelay = (i * 0.08) + 's'; });
+
+        // We might need to observe them if they have fade-up classes, but the current grid items don't have .fade-up on about.html
+        // If we add fade-up class, we'd do observeAnimations() here, but the original ones didn't have it either.
+
+    } catch (error) {
+        console.error("Error loading features:", error);
+    }
+}
+
+async function renderIndexFeatures() {
+    const gridEl = document.getElementById('index-features-grid');
+    if (!gridEl) return;
+
+    try {
+        const response = await fetch('data/whyfci.json');
+        if (!response.ok) throw new Error('Failed to load Why FCI data');
+        const features = await response.json();
+
+        let htmlContent = '';
+        features.forEach((feature) => {
+            if (!feature.title || !feature.description) {
+                console.warn('Skipping index feature due to missing title or description', feature);
+                return;
+            }
+
+            const iconHTML = feature.icon ? `<div class="feature-icon">${feature.icon}</div>` : '';
+
+            htmlContent += `
+            <div class="feature-card fade-up">
+              ${iconHTML}
+              <h3>${feature.title}</h3>
+              <p>${feature.description}</p>
+            </div>`;
+        });
+
+        gridEl.innerHTML = htmlContent;
+
+        // Setup animations
+        const newCards = gridEl.querySelectorAll('.feature-card');
+        newCards.forEach((el, i) => { el.style.transitionDelay = (i * 0.08) + 's'; });
+        observeAnimations();
+
+    } catch (error) {
+        console.error("Error loading index features:", error);
+    }
+}
+
+async function renderSectors() {
+    const containerEl = document.getElementById('dynamic-sectors-container');
+    if (!containerEl) return;
+
+    try {
+        const response = await fetch('data/sectors.json');
+        if (!response.ok) throw new Error('Failed to load sectors data');
+        const sectors = await response.json();
+
+        let htmlContent = '';
+        sectors.forEach((sector) => {
+            // Check for missing main params
+            if (!sector.titleMain || !sector.description) {
+                console.warn('Skipping sector due to missing titleMain or description', sector);
+                return;
+            }
+
+            // Optional HTML bits for left side image box
+            const iconHTML = sector.icon ? `<div class="sector-row-icon"><i class="${sector.icon}"></i></div>` : '';
+            const labelHTML = sector.label ? `<span class="sector-row-label">${sector.label}</span>` : '';
+            const styleAttr = sector.image ? `style="background-image:url('${sector.image}')"` : '';
+
+            // Handle optional inner title parts
+            const spanHTML = sector.titleSpan ? `<span>${sector.titleSpan}</span>` : '';
+            const suffixHTML = sector.titleSuffix ? ` ${sector.titleSuffix}` : '';
+
+            // Handle optional tags
+            let tagsHTML = '';
+            if (sector.tags && Array.isArray(sector.tags) && sector.tags.length > 0) {
+                const spans = sector.tags.map(tag => `<span>${tag}</span>`).join('');
+                tagsHTML = `<div class="sector-tags">\n                                    ${spans}\n                                </div>`;
+            }
+
+            htmlContent += `
+                        <div class="sector-row-card">
+                            <div class="sector-row-img" ${styleAttr}>
+                                ${iconHTML}
+                                ${labelHTML}
+                            </div>
+                            <div class="sector-row-body">
+                                <h3>${sector.titleMain} ${spanHTML}${suffixHTML}</h3>
+                                <p>${sector.description}</p>
+                                ${tagsHTML}
+                            </div>
+                        </div>
+            `;
+        });
+
+        containerEl.innerHTML = htmlContent;
+
+    } catch (error) {
+        console.error("Error loading sectors:", error);
+    }
+}
+
+async function renderIndexSectors() {
+    const gridEl = document.getElementById('index-sectors-grid');
+    if (!gridEl) return;
+
+    try {
+        const response = await fetch('data/sectors.json');
+        if (!response.ok) throw new Error('Failed to load sectors data');
+        const sectors = await response.json();
+
+        let htmlContent = '';
+        sectors.forEach((sector) => {
+            // Check for missing main params - we require titleMain for index sectors
+            if (!sector.titleMain) {
+                console.warn('Skipping index sector due to missing titleMain', sector);
+                return;
+            }
+
+            // Optional HTML elements
+            const styleAttr = sector.image ? `style="background-image:url('${sector.image}')"` : '';
+            const ariaLabel = `aria-label="${sector.titleMain} Exhibition"`;
+            const iconHTML = sector.icon ? `<div class="sector-icon-wrap"><i class="${sector.icon}"></i></div>` : '';
+
+            // Use indexDescription for description if available, fallback to description
+            let descText = sector.indexDescription || sector.description || '';
+
+            htmlContent += `
+            <div class="sector-card fade-up">
+              <div class="sector-img"
+                ${styleAttr}
+                role="img" ${ariaLabel}></div>
+              <div class="sector-body">
+                ${iconHTML}
+                <h3>${sector.titleMain}</h3>
+                <p>${descText}</p>
+              </div>
+            </div>`;
+        });
+
+        gridEl.innerHTML = htmlContent;
+
+        // Re-run observeAnimations for new fade-up elements
+        observeAnimations();
+
+    } catch (error) {
+        console.error("Error loading index sectors:", error);
+    }
+}
+
+async function renderServices() {
+    const servicesGrid = document.getElementById('services-page-grid');
+    const indexServicesGrid = document.getElementById('index-services-grid');
+
+    // Quick exit if neither grid is found on the current page
+    if (!servicesGrid && !indexServicesGrid) return;
+
+    try {
+        const response = await fetch('data/services.json');
+        if (!response.ok) throw new Error('Failed to load services data');
+        const services = await response.json();
+
+        let htmlContent = '';
+        let indexHtmlContent = '';
+
+        services.forEach((service) => {
+            // Validation Check
+            if (!service.title || !service.descriptionItems || service.descriptionItems.length === 0) {
+                console.warn('Skipping service due to missing title or description list', service);
+                return;
+            }
+
+            // Optional UI pieces
+            const imageHTML = service.image ? `<img src="${service.image}" alt="${service.title}" loading="lazy">` : '';
+            const iconOverlay = service.icon ? `<div class="service-illus-overlay"><i class="${service.icon}"></i></div>` : '';
+            const iconSpan = service.icon ? `<span class="icon"><i class="${service.icon}"></i></span>` : '';
+
+            // Build the List HTML
+            const listItems = service.descriptionItems.map(item => `<li>${item}</li>`).join('');
+
+            // Build the unified core interior of the card
+            const cardInner = `
+              <div class="service-illus">
+                ${imageHTML}
+                ${iconOverlay}
+              </div>
+              <div class="service-header">
+                ${iconSpan}
+                <h3>${service.title}</h3>
+              </div>
+              <div class="service-body">
+                <ul>
+                  ${listItems}
+                </ul>
+              </div>
+            `;
+
+            // Add the respective wrapper depending on if it's the index page or services page
+            if (servicesGrid) {
+                htmlContent += `<div class="service-card">${cardInner}</div>`;
+            }
+            if (indexServicesGrid) {
+                indexHtmlContent += `<div class="service-card fade-up">${cardInner}</div>`;
+            }
+        });
+
+        // Inject the built HTML dynamically based on which grids exist
+        if (servicesGrid) {
+            servicesGrid.innerHTML = htmlContent;
+        }
+        if (indexServicesGrid) {
+            indexServicesGrid.innerHTML = indexHtmlContent;
+            observeAnimations(); // trigger the new fade-ups class elements
+        }
+
+    } catch (error) {
+        console.error("Error loading services:", error);
+    }
+}
+
+async function renderExhibitions() {
+    const gridEl = document.getElementById('dynamic-exhibitions-grid');
+    if (!gridEl) return;
+
+    try {
+        const response = await fetch('data/exhibitions.json');
+        if (!response.ok) throw new Error('Failed to load exhibitions data');
+        const exhibitions = await response.json();
+
+        let htmlContent = '';
+        exhibitions.forEach((event) => {
+            // Validation requirements
+            if (!event.title || !event.description) {
+                console.warn('Skipping exhibition due to missing title or description', event);
+                return;
+            }
+
+            // Optional HTML bits
+            const iconHTML = event.icon ? `<span class="ex-icon">${event.icon}</span>` : '';
+            const sectorBadgeHTML = event.sectorBadge ? `<span class="ex-sector-badge">${event.sectorBadge}</span>` : '';
+            const subtitleHTML = event.subtitle ? `<p>${event.subtitle}</p>` : '';
+
+            const locationHTML = event.location ? `<span class="ex-meta-item">📍 <strong>${event.location}</strong></span>` : '';
+            const statusHTML = event.status ? `<span class="ex-meta-item">📅 <strong>${event.status}</strong></span>` : '';
+            const linkHTML = event.ctaLink ? `<a href="${event.ctaLink}" class="ex-cta" onclick="showPage('contact')">Enquire Now →</a>` : '';
+
+            htmlContent += `
+                        <div class="exhibition-card">
+                            <div class="ex-header">
+                                ${iconHTML}
+                                ${sectorBadgeHTML}
+                                <h3>${event.title}</h3>
+                                ${subtitleHTML}
+                            </div>
+                            <div class="ex-body">
+                                <div class="ex-meta">
+                                    ${locationHTML}
+                                    ${statusHTML}
+                                </div>
+                                <p class="ex-description">${event.description}</p>
+                                ${linkHTML}
+                            </div>
+                        </div>
+            `;
+        });
+
+        gridEl.innerHTML = htmlContent;
+    } catch (error) {
+        console.error('Error loading exhibitions:', error);
+    }
+}
 
 function setNavigationLink() {
 

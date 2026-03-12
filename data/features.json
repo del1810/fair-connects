@@ -1,0 +1,32 @@
+[
+  {
+    "image": "assets/service1.jpg",
+    "icon": "fas fa-bullseye",
+    "title": "Strategic B2B Platforms",
+    "description": "Purpose-built exhibition environments for serious business conversations and deal-making."
+  },
+  {
+    "image": "assets/service2.jpg",
+    "icon": "fas fa-handshake",
+    "title": "Buyer-Seller Connect",
+    "description": "Structured matchmaking programs bringing the right people together for meaningful outcomes."
+  },
+  {
+    "image": "assets/service3.jpg",
+    "icon": "fas fa-globe-asia",
+    "title": "Pan-India Reach",
+    "description": "Events across India with national and international participation channels."
+  },
+  {
+    "image": "assets/service4.jpg",
+    "icon": "fas fa-cogs",
+    "title": "End-to-End Management",
+    "description": "Complete exhibition services from concept to post-event analysis and reporting."
+  },
+  {
+    "image": "assets/service5.jpg",
+    "icon": "fas fa-chart-line",
+    "title": "ROI-Focused",
+    "description": "Data-driven approach ensuring measurable returns for every stakeholder."
+  }
+]

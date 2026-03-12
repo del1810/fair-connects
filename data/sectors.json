@@ -1,0 +1,81 @@
+[
+  {
+    "image": "assets/sector1.jpg",
+    "icon": "fas fa-utensils",
+    "label": "Food",
+    "titleMain": "Food & Beverage",
+    "titleSpan": "Sector",
+    "description": "Comprehensive coverage of India's food industry — from farm to fork. FCI's Food exhibitions connect manufacturers, processors, retailers, and technology providers across the entire food value chain.",
+    "indexDescription": "Food, Beverage, Dairy, Bakery, Sea Food, Cold Storage, Packaging and allied sectors",
+    "tags": [
+      "Food & Beverage",
+      "Dairy",
+      "Bakery",
+      "Sea Food",
+      "Cold Storage",
+      "Packaging"
+    ]
+  },
+  {
+    "image": "assets/sector2.jpg",
+    "icon": "fas fa-bolt",
+    "label": "Energy",
+    "titleMain": "Power &",
+    "titleSpan": "Energy",
+    "titleSuffix": "Sector",
+    "description": "Powering India's green energy transition. FCI's energy exhibitions showcase cutting-edge technologies from electrical solutions to renewable energy innovations and storage systems.",
+    "indexDescription": "Electrical, Solar, LED, Energy Storage and allied sectors",
+    "tags": [
+      "Electrical",
+      "Solar",
+      "LED",
+      "Energy Storage"
+    ]
+  },
+  {
+    "image": "assets/sector3.jpg",
+    "icon": "fas fa-car",
+    "label": "Auto",
+    "titleMain": "Automotive",
+    "titleSpan": "Sector",
+    "description": "Accelerating India's automotive future. From conventional vehicles to EV technology, FCI's automotive shows bring together the entire automotive ecosystem.",
+    "indexDescription": "Automotive, Components, EV, Batteries, Aftermarket Solutions and allied sectors",
+    "tags": [
+      "Automotive",
+      "Components",
+      "EV",
+      "Batteries",
+      "Aftermarket"
+    ]
+  },
+  {
+    "image": "assets/sector4.jpg",
+    "icon": "fas fa-heart-pulse",
+    "label": "Health",
+    "titleMain": "Healthcare",
+    "titleSpan": "Sector",
+    "description": "Connecting India's healthcare ecosystem for better outcomes. FCI's healthcare exhibitions bring together hospitals, medical device manufacturers, pharma companies and innovators.",
+    "indexDescription": "Healthcare, Medical, Pharma and allied sectors",
+    "tags": [
+      "Healthcare",
+      "Medical",
+      "Pharma"
+    ]
+  },
+  {
+    "image": "assets/sector5.jpg",
+    "icon": "fas fa-hard-hat",
+    "label": "Build",
+    "titleMain": "Construction &",
+    "titleSpan": "Infrastructure",
+    "description": "Building India's future with smart, sustainable infrastructure. FCI's construction exhibitions cover the complete built environment — from raw materials to smart building technologies.",
+    "indexDescription": "Construction, Infrastructure, Smart Building & Security Solutions, Building Materials and allied sectors",
+    "tags": [
+      "Construction",
+      "Infrastructure",
+      "Smart Building",
+      "Security",
+      "Paint"
+    ]
+  }
+]

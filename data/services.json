@@ -1,0 +1,34 @@
+[
+  {
+    "image": "assets/services1.jpg",
+    "icon": "fas fa-store",
+    "title": "Exhibition & Trade Fair Organization",
+    "descriptionItems": [
+      "B2B trade exhibitions",
+      "Industry-specific expos",
+      "International participation & pavilions",
+      "Buyer-seller meets"
+    ]
+  },
+  {
+    "image": "assets/services2.jpg",
+    "icon": "fas fa-microphone-alt",
+    "title": "Conference & Knowledge Programs",
+    "descriptionItems": [
+      "Industry conferences and summits",
+      "Technical seminars & panel discussions",
+      "Government and policy sessions"
+    ]
+  },
+  {
+    "image": "assets/services3.jpg",
+    "icon": "fas fa-bullhorn",
+    "title": "Visitor & Buyer Promotion",
+    "descriptionItems": [
+      "Targeted buyer outreach programs",
+      "Trade visitor marketing campaigns",
+      "Hosted buyer programs",
+      "Industry association partnerships"
+    ]
+  }
+]
