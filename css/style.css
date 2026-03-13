@@ -110,7 +110,7 @@ body {
 }
 
 .logo-img {
-    height: 52px;
+    height: 75px;
     width: auto;
     display: block;
     object-fit: contain;
@@ -833,11 +833,13 @@ body {
     gap: 40px;
     align-items: start;
 }
+
 @media (max-width:768px) {
     .grid-split {
         grid-template-columns: none;
     }
 }
+
 .tabs-wrapper {
     margin-top: 20px;
 }
