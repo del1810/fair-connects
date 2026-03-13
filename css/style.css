@@ -911,6 +911,10 @@ body {
 }
 
 @media (max-width: 640px) {
+
+  .logo-img {
+    height: 70px;
+   }
     .role-section-inner {
         grid-template-columns: 1fr;
         gap: 16px;
