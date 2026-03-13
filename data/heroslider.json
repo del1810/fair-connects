@@ -1,8 +1,7 @@
 [
   {
     "image": "assets/hero1.jpg",
-    "badge": "Chennai-Based Exhibition Organizers",
-    "tagline": "Connecting Industries | Creating Opportunities | Driving Growth",
+    "tagline": "Connecting Industries | Driving Growth",
     "title": "Fair <span>Connects</span> India",
     "description": "India's evolving B2B trade fair organizer delivering high-impact exhibitions that connect manufacturers, suppliers, buyers, policymakers and innovators under one roof.",
     "buttons": [
@@ -20,10 +19,9 @@
   },
   {
     "image": "assets/hero2.jpg",
-    "badge": "B2B Trade Fair Organizers India",
-    "tagline": "5 High-Growth Industry Verticals",
+    "tagline": "10 High-Growth Industry Verticals",
     "title": "Industry <span>Exhibitions</span>",
-    "description": "Specialized trade exhibitions for Food & Beverage, Power & Energy, Automotive, Healthcare and Construction sectors — driving measurable business outcomes.",
+    "description": "Specialized trade exhibitions for ten high growth industrial sectors — driving measurable business outcomes.",
     "buttons": [
       {
         "text": "View Sectors",
@@ -39,7 +37,6 @@
   },
   {
     "image": "assets/hero3.jpg",
-    "badge": "Exhibition Management Services Chennai",
     "tagline": "Conference · Seminar · Knowledge Events",
     "title": "Knowledge <span>Platforms</span>",
     "description": "Industry conferences, technical summits, policy sessions and buyer-seller meets — end-to-end managed with world-class execution standards.",
@@ -58,7 +55,6 @@
   },
   {
     "image": "assets/hero4.jpg",
-    "badge": "Pan-India B2B Exhibition Network",
     "tagline": "Exhibitor · Visitor · Sponsor · Partner",
     "title": "Connect <span>& Grow</span>",
     "description": "Direct access to decision-makers, distributors and buyers across India. Strong pre-event marketing, premium branding and business matchmaking programs.",

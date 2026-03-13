@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderGallery(); // Initialize dynamic gallery
     renderFeatures(); // Initialize features grid if available
     renderSectors(); // Initialize dynamic sectors
-    renderIndexSectors(); // Initialize index page sectors
+    // renderIndexSectors(); // Initialize index page sectors
     renderServices(); // Initialize services grid for both index and services pages
     renderExhibitions(); // Initialize dynamic exhibitions list if available
     renderIndexFeatures(); // Initialize dynamic features list if available
