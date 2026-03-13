@@ -1,0 +1,25 @@
+{
+"text": "Explore Exhibitions",
+"class": "btn-primary",
+"action": "showPage('exhibitions')"
+},
+
+{
+"text": "View Sectors",
+"class": "btn-primary",
+"action": "showPage('sectors')"
+},
+
+,
+{
+"text": "Why FCI",
+"class": "btn-outline",
+"action": "showPage('whyfci')"
+}
+
+,
+{
+"text": "Contact Us",
+"class": "btn-outline",
+"action": "showPage('contact')"
+}

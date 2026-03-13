@@ -6,13 +6,8 @@
     "description": "India's evolving B2B trade fair organizer delivering high-impact exhibitions that connect manufacturers, suppliers, buyers, policymakers and innovators under one roof.",
     "buttons": [
       {
-        "text": "Explore Exhibitions",
-        "class": "btn-primary",
-        "action": "showPage('exhibitions')"
-      },
-      {
         "text": "Get In Touch",
-        "class": "btn-outline",
+        "class": "btn-primary",
         "action": "showPage('contact')"
       }
     ]
@@ -24,13 +19,8 @@
     "description": "Specialized trade exhibitions for ten high growth industrial sectors — driving measurable business outcomes.",
     "buttons": [
       {
-        "text": "View Sectors",
-        "class": "btn-primary",
-        "action": "showPage('sectors')"
-      },
-      {
         "text": "About Us",
-        "class": "btn-outline",
+        "class": "btn-primary",
         "action": "showPage('about')"
       }
     ]
@@ -45,11 +35,6 @@
         "text": "Our Services",
         "class": "btn-primary",
         "action": "showPage('services')"
-      },
-      {
-        "text": "Why FCI",
-        "class": "btn-outline",
-        "action": "showPage('whyfci')"
       }
     ]
   },
@@ -63,11 +48,6 @@
         "text": "Exhibit With Us",
         "class": "btn-primary",
         "action": "showPage('whyfci')"
-      },
-      {
-        "text": "Contact Us",
-        "class": "btn-outline",
-        "action": "showPage('contact')"
       }
     ]
   }
