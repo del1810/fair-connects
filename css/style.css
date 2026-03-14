@@ -110,7 +110,7 @@ body {
 }
 
 .logo-img {
-    height: 80px;
+    height: 86px;
     width: auto;
     display: block;
     object-fit: contain;
@@ -911,10 +911,6 @@ body {
 }
 
 @media (max-width: 640px) {
-
-  .logo-img {
-    height: 70px;
-   }
     .role-section-inner {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -2470,6 +2466,30 @@ footer {
 /* Remove old emoji icon */
 .feature-icon {
     display: none;
+}
+
+/* ===== NAVBAR LOGO — Mobile ===== */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 60px;
+        width: auto;
+        /* max-width: 160px; */
+    }
+
+    .navbar .container {
+        height: 64px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        height: 42px;
+        max-width: 190px;
+    }
+
+    .navbar .container {
+        height: 58px;
+    }
 }
 
 /* ===== SCROLL ANIMATIONS ===== */
