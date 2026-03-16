@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.fairconnects.in/sitemap.xml
